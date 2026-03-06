@@ -46,6 +46,9 @@
 - **Spacing:** Use intentional, consistent spacing tokens — not random Tailwind steps.
 - **Depth:** Surfaces should have a layering system (base → elevated → floating), not all sit at the same z-plane.
 
+## GitHub
+- **Before every push:** clear all files in `temporary screenshots/` — run `rm "temporary screenshots/"*` before committing.
+
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
 - Do not "improve" a reference design — match it
