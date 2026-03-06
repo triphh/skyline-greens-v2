@@ -294,10 +294,9 @@
     }
     .tech-visual-img {
       position: absolute; inset: 0;
-      background: url('https://placehold.co/600x750/0D1F14/1B4332') no-repeat center/cover;
-      opacity: 0.35;
+      background: url('brand_assets/leafy-greens.jpg') no-repeat center/cover;
     }
-    .tech-visual-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,11,7,0.97) 25%, transparent 70%); }
+    .tech-visual-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,11,7,0.97) 30%, rgba(5,11,7,0.25) 62%, rgba(5,11,7,0.05) 100%); }
     .tech-visual-rule { position: absolute; top: 2rem; left: 2rem; right: 2rem; height: 1px; background: var(--rule); }
     .tech-visual-corner { position: absolute; top: 1.5rem; right: 2rem; font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); }
     .tech-visual-content { position: relative; z-index: 1; }
@@ -340,7 +339,11 @@
     /* FOOTER */
     footer { background: var(--bg-void); border-top: 1px solid var(--rule); padding: 5.5rem 10rem 4rem; }
     .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid var(--rule); }
-    .footer-logo-img { height: 72px; width: auto; filter: brightness(0) invert(1); margin-bottom: 1.5rem; display: block; }
+    .footer-brand-logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .footer-icon-wrap { width: 44px; height: 44px; flex-shrink: 0; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .footer-icon { width: 44px; height: 44px; object-fit: cover; display: block; }
+    .footer-wordmark { font-size: 0.9rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-primary); line-height: 1; }
+    .footer-wordmark strong { font-weight: 800; letter-spacing: 0.12em; }
     .footer-brand p { font-size: 0.8rem; line-height: 1.8; color: var(--text-faint); max-width: 240px; }
     .footer-col h4 { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 1.5rem; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
@@ -624,7 +627,10 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="brand_assets/logo-primary.png" class="footer-logo-img" alt="Skyline Greens">
+        <div class="footer-brand-logo">
+          <div class="footer-icon-wrap"><img src="brand_assets/logo-clean.png" class="footer-icon" alt=""></div>
+          <span class="footer-wordmark"><strong>SKYLINE</strong> GREENS</span>
+        </div>
         <p>Urban agriculture with architectural precision. Growing what the city needs, inside the city.</p>
       </div>
       <div class="footer-col">
