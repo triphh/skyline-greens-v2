@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skyline Greens — Urban Agriculture with Architectural Precision</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg-void:        #050B07;
+      --bg-dark:        #0A1610;
+      --bg-surface:     #10201A;
+      --bg-elevated:    #162419;
+      --emerald:        #1B4332;
+      --emerald-mid:    #2A6648;
+      --accent:         #C4D9A0;
+      --accent-warm:    #DFF0C8;
+      --accent-dim:     rgba(196,217,160,0.55);
+      --accent-glow:    rgba(196,217,160,0.07);
+      --text-primary:   #F0F5EE;
+      --text-secondary: rgba(240,245,238,0.62);
+      --text-faint:     rgba(240,245,238,0.32);
+      --rule:           rgba(240,245,238,0.07);
+      --rule-accent:    rgba(196,217,160,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--bg-void);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 9999;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 2rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(5,11,7,0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 1.25rem 4rem;
+      border-bottom-color: var(--rule);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; flex-shrink: 0; }
+    .nav-icon-wrap {
+      width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .nav-icon { width: 36px; height: 36px; object-fit: cover; display: block; }
+    .nav-wordmark { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-primary); line-height: 1; }
+    .nav-wordmark strong { font-weight: 800; letter-spacing: 0.12em; }
+    .nav-links { display: flex; align-items: center; gap: 3rem; }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a:focus-visible { outline: 1px solid var(--accent-dim); outline-offset: 4px; }
+    .btn-nav {
+      background: var(--accent) !important;
+      color: var(--bg-void) !important;
+      padding: 0.6rem 1.5rem !important;
+      border-radius: 2px !important;
+      font-size: 0.7rem !important; font-weight: 700 !important;
+      letter-spacing: 0.1em !important;
+      transition: background 0.2s ease, transform 0.15s ease !important;
+    }
+    .btn-nav:hover { background: var(--accent-warm) !important; transform: translateY(-1px) !important; }
+    .btn-nav:active { transform: translateY(0) !important; }
+
+    /* SECTION LABEL */
+    .section-label {
+      position: absolute; left: 2.5rem; top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      transform-origin: center;
+      font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--text-faint); white-space: nowrap;
+    }
+
+    /* HERO */
+    #hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 0 5rem 0 10rem;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('brand_assets/Hero-background.png');
+      background-size: cover;
+      background-position: center 40%;
+    }
+    /* Dark overlay: deep void at left (where text is) → opens up toward center/right */
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(5,11,7,0.97) 0%, rgba(5,11,7,0.82) 38%, rgba(5,11,7,0.35) 70%, rgba(5,11,7,0.15) 100%),
+        linear-gradient(to top, rgba(5,11,7,0.7) 0%, transparent 45%);
+      z-index: 1;
+    }
+    /* Subtle emerald color wash to unify purple LEDs with brand palette */
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 75% 50%, rgba(27,67,50,0.28) 0%, transparent 65%);
+      mix-blend-mode: multiply;
+      z-index: 2;
+    }
+    .hero-line { position: absolute; bottom: 0; left: 10rem; right: 5rem; height: 1px; background: var(--rule); z-index: 3; }
+    .hero-content { position: relative; z-index: 3; max-width: 840px; }
+
+    .hero-eyebrow {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent-dim); margin-bottom: 2rem;
+      opacity: 0; animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+    }
+    .hero-heading {
+      font-size: clamp(3.4rem, 7.5vw, 6.8rem);
+      font-weight: 800; line-height: 1.0; letter-spacing: -0.035em;
+      color: var(--text-primary); margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s forwards;
+    }
+    .hero-heading em { font-style: normal; color: var(--accent); }
+    .hero-sub {
+      font-size: 1rem; font-weight: 400; line-height: 1.8;
+      color: var(--text-secondary); max-width: 460px; margin-bottom: 3rem;
+      opacity: 0; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.7s forwards;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 2rem;
+      opacity: 0; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.9s forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent); color: var(--bg-void);
+      padding: 0.9rem 2.2rem; border-radius: 2px;
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .btn-primary:hover { background: var(--accent-warm); transform: translateY(-2px); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--text-secondary); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      border-bottom: 1px solid var(--rule); padding-bottom: 0.25rem;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .btn-ghost:hover { color: var(--text-primary); border-color: var(--text-secondary); }
+
+    .hero-scroll {
+      position: absolute; right: 4rem; bottom: 3rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+      opacity: 0; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 1.1s forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.55rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--text-faint); writing-mode: vertical-rl;
+    }
+    .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--rule-accent), transparent); }
+
+    /* MISSION STRIP */
+    #mission-strip {
+      border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+      padding: 2.75rem 10rem;
+      display: flex; align-items: stretch;
+      background: var(--bg-surface);
+    }
+    .strip-item { flex: 1; display: flex; align-items: center; gap: 1.5rem; padding-right: 3rem; }
+    .strip-item + .strip-item { border-left: 1px solid var(--rule); padding-left: 3rem; padding-right: 0; }
+    .strip-icon { width: 34px; height: 34px; flex-shrink: 0; filter: brightness(0) invert(1); opacity: 0.6; }
+    .strip-text { font-size: 0.78rem; line-height: 1.65; color: var(--text-secondary); }
+    .strip-text strong { display: block; color: var(--text-primary); font-weight: 700; font-size: 0.84rem; margin-bottom: 0.15rem; }
+
+    /* ABOUT */
+    #about {
+      position: relative; padding: 9rem 10rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center;
+      background: var(--bg-dark); border-bottom: 1px solid var(--rule); overflow: hidden;
+    }
+    .section-number {
+      position: absolute; top: 3rem; right: 3rem;
+      font-size: 9rem; font-weight: 900; letter-spacing: -0.05em;
+      color: var(--rule); line-height: 1; user-select: none; pointer-events: none;
+    }
+    .tag {
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent-dim); margin-bottom: 1.75rem;
+    }
+    .about-left h2 {
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 800; line-height: 1.08; letter-spacing: -0.03em;
+      color: var(--text-primary); margin-bottom: 2rem;
+    }
+    .about-left p { font-size: 0.95rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.25rem; }
+    .about-right { display: flex; flex-direction: column; gap: 2px; }
+    .stat-card {
+      background: var(--bg-surface); border: 1px solid var(--rule); padding: 2rem 2.25rem;
+      transition: border-color 0.25s ease, background 0.25s ease; cursor: default;
+    }
+    .stat-card:hover { background: var(--bg-elevated); border-color: var(--rule-accent); }
+    .stat-card .num { font-size: 2.8rem; font-weight: 900; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
+    .stat-card .lbl { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+    .stat-card .desc { font-size: 0.78rem; line-height: 1.65; color: var(--text-faint); margin-top: 0.5rem; }
+
+    /* PRODUCE */
+    #produce {
+      position: relative; padding: 9rem 10rem;
+      background: var(--bg-void); border-bottom: 1px solid var(--rule); overflow: hidden;
+    }
+    .produce-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 4.5rem; }
+    .produce-header h2 { font-size: clamp(2rem, 3.8vw, 3.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: var(--text-primary); }
+    .produce-header .sub { font-size: 0.88rem; line-height: 1.75; color: var(--text-secondary); max-width: 340px; text-align: right; }
+    .produce-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .produce-card {
+      position: relative; background: var(--bg-surface); border: 1px solid var(--rule);
+      padding: 2.75rem 2.5rem 2.5rem; overflow: hidden;
+      transition: border-color 0.3s ease, background 0.3s ease; cursor: default;
+    }
+    .produce-card:hover { background: var(--bg-elevated); border-color: var(--rule-accent); }
+    .produce-card:hover .card-arrow { opacity: 1; transform: translate(0,0); }
+    .produce-card:hover .card-accent { transform: scaleX(1); }
+    .card-num { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 3rem; }
+    .card-icon { width: 38px; height: 38px; margin-bottom: 1.75rem; filter: brightness(0) invert(1); opacity: 0.5; }
+    .produce-card h3 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 0.75rem; }
+    .produce-card p { font-size: 0.82rem; line-height: 1.75; color: var(--text-secondary); }
+    .card-accent {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent); opacity: 0.55;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .card-arrow {
+      position: absolute; top: 2.75rem; right: 2.5rem;
+      font-size: 1rem; color: var(--accent-dim);
+      opacity: 0; transform: translate(-4px,4px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    /* TECHNOLOGY */
+    #technology {
+      position: relative; padding: 9rem 10rem;
+      background: var(--bg-surface); border-bottom: 1px solid var(--rule); overflow: hidden;
+    }
+    .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; }
+    .tech-left h2 { font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 2rem; }
+    .tech-left > p { font-size: 0.95rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 3rem; }
+    .tech-features { display: flex; flex-direction: column; }
+    .tech-feat {
+      display: flex; align-items: flex-start; gap: 1.5rem;
+      padding: 1.5rem 0; border-bottom: 1px solid var(--rule);
+      transition: padding-left 0.25s ease; cursor: default;
+    }
+    .tech-feat:first-child { border-top: 1px solid var(--rule); }
+    .tech-feat:hover { padding-left: 0.5rem; }
+    .feat-num { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; color: var(--accent-dim); margin-top: 0.15rem; min-width: 1.75rem; }
+    .feat-content h4 { font-size: 0.88rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem; }
+    .feat-content p { font-size: 0.78rem; line-height: 1.65; color: var(--text-secondary); }
+    .tech-visual {
+      position: relative; background: var(--bg-elevated); border: 1px solid var(--rule);
+      aspect-ratio: 4/5; display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 2.5rem; overflow: hidden;
+    }
+    .tech-visual-img {
+      position: absolute; inset: 0;
+      background: url('https://placehold.co/600x750/0D1F14/1B4332') no-repeat center/cover;
+      opacity: 0.35;
+    }
+    .tech-visual-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,11,7,0.97) 25%, transparent 70%); }
+    .tech-visual-rule { position: absolute; top: 2rem; left: 2rem; right: 2rem; height: 1px; background: var(--rule); }
+    .tech-visual-corner { position: absolute; top: 1.5rem; right: 2rem; font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); }
+    .tech-visual-content { position: relative; z-index: 1; }
+    .tech-visual-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-dim); margin-bottom: 0.75rem; }
+    .tech-visual-stat { font-size: 4rem; font-weight: 900; letter-spacing: -0.04em; color: var(--accent); line-height: 1; }
+    .tech-visual-desc { font-size: 0.8rem; line-height: 1.65; color: var(--text-secondary); margin-top: 0.6rem; }
+
+    /* CTA */
+    #cta { padding: 10rem 10rem; background: var(--emerald); position: relative; overflow: hidden; }
+    .cta-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 90% at 100% 50%, rgba(42,102,72,0.55) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 0% 50%, rgba(5,11,7,0.65) 0%, transparent 60%);
+    }
+    #cta .content { position: relative; z-index: 1; max-width: 760px; }
+    #cta .tag { color: rgba(196,217,160,0.6); }
+    #cta h2 { font-size: clamp(2.5rem, 5.5vw, 4.8rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; color: var(--text-primary); margin-bottom: 1.75rem; }
+    #cta > .content > p { font-size: 1rem; line-height: 1.8; color: rgba(240,245,238,0.62); max-width: 500px; margin-bottom: 3.5rem; }
+    .cta-actions { display: flex; align-items: center; gap: 2.5rem; }
+    .btn-cta {
+      display: inline-flex; align-items: center;
+      background: var(--accent); color: var(--bg-void);
+      padding: 1rem 2.5rem; border-radius: 2px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .btn-cta:hover { background: var(--accent-warm); transform: translateY(-2px); }
+    .btn-cta:active { transform: translateY(0); }
+    .btn-cta:focus-visible { outline: 1px solid var(--accent-warm); outline-offset: 3px; }
+    .btn-cta-ghost {
+      display: inline-flex; align-items: center;
+      color: rgba(240,245,238,0.55); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      border-bottom: 1px solid rgba(240,245,238,0.2); padding-bottom: 0.2rem;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .btn-cta-ghost:hover { color: var(--text-primary); border-color: rgba(240,245,238,0.5); }
+
+    /* FOOTER */
+    footer { background: var(--bg-void); border-top: 1px solid var(--rule); padding: 5.5rem 10rem 4rem; }
+    .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid var(--rule); }
+    .footer-logo-img { height: 72px; width: auto; filter: brightness(0) invert(1); margin-bottom: 1.5rem; display: block; }
+    .footer-brand p { font-size: 0.8rem; line-height: 1.8; color: var(--text-faint); max-width: 240px; }
+    .footer-col h4 { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 1.5rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .footer-col ul li a { font-size: 0.84rem; color: var(--text-secondary); text-decoration: none; transition: color 0.2s ease; }
+    .footer-col ul li a:hover { color: var(--text-primary); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2.5rem; }
+    .footer-bottom p { font-size: 0.72rem; color: var(--text-faint); letter-spacing: 0.04em; }
+    .footer-tagline { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 1.75rem; }
+      nav.scrolled { padding: 1rem 1.75rem; }
+      .nav-links { display: none; }
+      #hero { padding: 7rem 1.75rem 4rem; }
+      .hero-scroll, .section-label { display: none; }
+      #mission-strip { padding: 2rem 1.75rem; flex-direction: column; }
+      .strip-item { padding: 1.5rem 0; }
+      .strip-item + .strip-item { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; }
+      #about { padding: 5rem 1.75rem; grid-template-columns: 1fr; gap: 3.5rem; }
+      .section-number { display: none; }
+      #produce { padding: 5rem 1.75rem; }
+      .produce-header { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+      .produce-header .sub { text-align: left; max-width: none; }
+      .produce-grid { grid-template-columns: 1fr; }
+      #technology { padding: 5rem 1.75rem; }
+      .tech-grid { grid-template-columns: 1fr; gap: 4rem; }
+      #cta { padding: 5rem 1.75rem; }
+      footer { padding: 3.5rem 1.75rem 2.5rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-brand" aria-label="Skyline Greens">
+      <div class="nav-icon-wrap"><img src="brand_assets/logo-clean.png" class="nav-icon" alt=""></div>
+      <span class="nav-wordmark"><strong>SKYLINE</strong> GREENS</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#produce">Produce</a>
+      <a href="#technology">Technology</a>
+      <a href="#cta" class="btn-nav">Partner With Us</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="section-label">Skyline Greens &mdash; Est. 2023</div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Urban Agriculture &middot; Dubai</p>
+      <h1 class="hero-heading">
+        Precision Grown.<br>
+        <em>The Future</em><br>
+        of Produce.
+      </h1>
+      <p class="hero-sub">
+        Skyline Greens delivers ultra-fresh produce grown in architecturally
+        precise vertical environments &mdash; supplying restaurants, hotels, and
+        retailers with zero-compromise quality.
+      </p>
+      <div class="hero-actions">
+        <a href="#produce" class="btn-primary">
+          Explore Produce
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#about" class="btn-ghost">Our Mission</a>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+    <div class="hero-line" aria-hidden="true"></div>
+  </section>
+
+  <!-- MISSION STRIP -->
+  <div id="mission-strip">
+    <div class="strip-item reveal">
+      <img src="brand_assets/icon-fresh.png" class="strip-icon" alt="">
+      <div class="strip-text">
+        <strong>Harvested Daily</strong>
+        Peak nutrition delivered within hours of cut &mdash; not days.
+      </div>
+    </div>
+    <div class="strip-item reveal" style="transition-delay:0.1s">
+      <img src="brand_assets/icon-eco.png" class="strip-icon" alt="">
+      <div class="strip-text">
+        <strong>Zero Pesticides</strong>
+        Controlled environments eliminate chemical intervention entirely.
+      </div>
+    </div>
+    <div class="strip-item reveal" style="transition-delay:0.2s">
+      <img src="brand_assets/icon-urban.png" class="strip-icon" alt="">
+      <div class="strip-text">
+        <strong>Urban Proximity</strong>
+        Grown inside the city. Delivered to your kitchen, not a warehouse.
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">01 / Mission</div>
+    <div class="section-number" aria-hidden="true">01</div>
+    <div class="about-left reveal">
+      <p class="tag">Who We Are</p>
+      <h2>Precision farming<br>for a new era.</h2>
+      <p>We build vertical growing systems that treat agriculture as an engineering discipline &mdash; not guesswork. Every variable controlled. Every harvest consistent.</p>
+      <p>Our farms occupy existing urban infrastructure: rooftops, warehouses, interiors. We bring food production inside the city and remove the logistics chain that degrades quality.</p>
+    </div>
+    <div class="about-right reveal" style="transition-delay:0.15s">
+      <div class="stat-card">
+        <div class="num">98%</div>
+        <div class="lbl">Less Water</div>
+        <div class="desc">Compared to conventional open-field agriculture through closed-loop hydroponic recirculation.</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">365</div>
+        <div class="lbl">Days a Year</div>
+        <div class="desc">No seasons. No weather dependency. Consistent supply delivered year-round.</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">&lt;4h</div>
+        <div class="lbl">Farm to Kitchen</div>
+        <div class="desc">Urban proximity eliminates the cold chain bottleneck that strips produce of nutrients.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCE -->
+  <section id="produce">
+    <div class="section-label">02 / Produce</div>
+    <div class="produce-header">
+      <div>
+        <p class="tag">What We Grow</p>
+        <h2>Premium varieties,<br>grown to specification.</h2>
+      </div>
+      <p class="sub">Every cultivar selected for flavour density, shelf integrity, and visual presentation standards.</p>
+    </div>
+    <div class="produce-grid">
+      <div class="produce-card reveal">
+        <div class="card-num">01</div>
+        <img src="brand_assets/icon-nature.png" class="card-icon" alt="">
+        <h3>Leafy Greens</h3>
+        <p>Baby spinach, arugula, romaine, butter lettuce &mdash; harvested at peak flavour, never pre-cut.</p>
+        <div class="card-accent"></div>
+        <div class="card-arrow" aria-hidden="true">&#x2197;</div>
+      </div>
+      <div class="produce-card reveal" style="transition-delay:0.1s">
+        <div class="card-num">02</div>
+        <img src="brand_assets/icon-fresh.png" class="card-icon" alt="">
+        <h3>Living Herbs</h3>
+        <p>Basil, mint, coriander, dill, chives &mdash; supplied as living root systems for extended kitchen life.</p>
+        <div class="card-accent"></div>
+        <div class="card-arrow" aria-hidden="true">&#x2197;</div>
+      </div>
+      <div class="produce-card reveal" style="transition-delay:0.2s">
+        <div class="card-num">03</div>
+        <img src="brand_assets/icon-growth.png" class="card-icon" alt="">
+        <h3>Microgreens</h3>
+        <p>Sunflower, pea shoots, radish, amaranth &mdash; 40&times; the nutrient density of mature leaves. Cut to order.</p>
+        <div class="card-accent"></div>
+        <div class="card-arrow" aria-hidden="true">&#x2197;</div>
+      </div>
+      <div class="produce-card reveal" style="transition-delay:0.05s">
+        <div class="card-num">04</div>
+        <img src="brand_assets/icon-agri.png" class="card-icon" alt="">
+        <h3>Specialty Edibles</h3>
+        <p>Edible flowers, watercress, mizuna, tatsoi &mdash; for chefs who demand ingredients with a point of view.</p>
+        <div class="card-accent"></div>
+        <div class="card-arrow" aria-hidden="true">&#x2197;</div>
+      </div>
+      <div class="produce-card reveal" style="transition-delay:0.15s">
+        <div class="card-num">05</div>
+        <img src="brand_assets/icon-eco.png" class="card-icon" alt="">
+        <h3>Seasonal Blends</h3>
+        <p>Custom-designed mix packs curated by our agronomists. Consistent ratios, consistent presentation.</p>
+        <div class="card-accent"></div>
+        <div class="card-arrow" aria-hidden="true">&#x2197;</div>
+      </div>
+      <div class="produce-card reveal" style="transition-delay:0.25s">
+        <div class="card-num">06</div>
+        <img src="brand_assets/icon-urban.png" class="card-icon" alt="">
+        <h3>Custom Cultivars</h3>
+        <p>Work with our team to specify varieties, growth cycles, and harvest schedules around your menu.</p>
+        <div class="card-accent"></div>
+        <div class="card-arrow" aria-hidden="true">&#x2197;</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY -->
+  <section id="technology">
+    <div class="section-label">03 / Technology</div>
+    <div class="tech-grid">
+      <div class="tech-left reveal">
+        <p class="tag">How We Grow</p>
+        <h2>Every variable<br>under control.</h2>
+        <p>Our proprietary growing system integrates climate engineering, LED spectrum tuning, and closed-loop hydroponics &mdash; removing agriculture's dependency on nature entirely.</p>
+        <div class="tech-features">
+          <div class="tech-feat">
+            <span class="feat-num">01</span>
+            <div class="feat-content">
+              <h4>Closed-Loop Hydroponics</h4>
+              <p>Water is recirculated and pH-calibrated continuously. Zero runoff, zero waste.</p>
+            </div>
+          </div>
+          <div class="tech-feat">
+            <span class="feat-num">02</span>
+            <div class="feat-content">
+              <h4>Spectrum-Tuned LED Lighting</h4>
+              <p>Each cultivar receives a bespoke light recipe &mdash; wavelength, intensity, and photoperiod dialled for flavour.</p>
+            </div>
+          </div>
+          <div class="tech-feat">
+            <span class="feat-num">03</span>
+            <div class="feat-content">
+              <h4>Climate Precision</h4>
+              <p>Temperature, humidity, and CO&#x2082; held to &plusmn;0.5&deg; tolerance. Seasons become a design variable.</p>
+            </div>
+          </div>
+          <div class="tech-feat">
+            <span class="feat-num">04</span>
+            <div class="feat-content">
+              <h4>Sensor Intelligence</h4>
+              <p>Over 200 data points captured per cycle, driving continuous yield and quality optimisation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:0.2s">
+        <div class="tech-visual">
+          <div class="tech-visual-img"></div>
+          <div class="tech-visual-overlay"></div>
+          <div class="tech-visual-rule"></div>
+          <div class="tech-visual-corner">SG-F01</div>
+          <div class="tech-visual-content">
+            <div class="tech-visual-label">Yield Efficiency Index</div>
+            <div class="tech-visual-stat">12&times;</div>
+            <div class="tech-visual-desc">More produce per square metre than conventional field agriculture &mdash; using a fraction of the land.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="cta-bg"></div>
+    <div class="content reveal">
+      <p class="tag">Work With Us</p>
+      <h2>Build your supply<br>chain on precision.</h2>
+      <p>Whether you operate a restaurant, hotel kitchen, or retail chain &mdash; Skyline Greens offers supply agreements calibrated to your volume, variety, and delivery cadence.</p>
+      <div class="cta-actions">
+        <a href="mailto:hello@skylinegreens.com" class="btn-cta">Start a Conversation</a>
+        <a href="#produce" class="btn-cta-ghost">View Produce &nbsp;&#x2197;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="brand_assets/logo-primary.png" class="footer-logo-img" alt="Skyline Greens">
+        <p>Urban agriculture with architectural precision. Growing what the city needs, inside the city.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Produce</h4>
+        <ul>
+          <li><a href="#">Leafy Greens</a></li>
+          <li><a href="#">Living Herbs</a></li>
+          <li><a href="#">Microgreens</a></li>
+          <li><a href="#">Specialty Edibles</a></li>
+          <li><a href="#">Custom Orders</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Technology</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@skylinegreens.com">hello@skylinegreens.com</a></li>
+          <li><a href="#">Partner Enquiries</a></li>
+          <li><a href="#">Dubai, UAE</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Skyline Greens. All rights reserved.</p>
+      <span class="footer-tagline">Urban Agriculture &middot; Architectural Precision</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
