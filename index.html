@@ -194,6 +194,73 @@
     .strip-text { font-size: 0.78rem; line-height: 1.65; color: var(--text-secondary); }
     .strip-text strong { display: block; color: var(--emerald); font-weight: 700; font-size: 0.84rem; margin-bottom: 0.15rem; }
 
+    /* GROWTH SCROLL */
+    #growth { position: relative; height: 350vh; background: var(--bg-void); }
+    .growth-sticky {
+      position: sticky; top: 0; height: 100vh; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-void);
+    }
+    #growth-canvas {
+      display: block; max-width: 100%; width: auto; height: auto;
+      max-height: 88vh; pointer-events: none;
+    }
+    .growth-intro {
+      position: absolute; top: 2.75rem; left: 10rem; z-index: 3;
+    }
+    .growth-intro-label {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--text-faint);
+    }
+    .gcallout {
+      position: absolute; left: 10rem; top: 50%; transform: translateY(calc(-50% + 12px));
+      max-width: 360px; opacity: 0; pointer-events: none; z-index: 3;
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .gcallout.active { opacity: 1; transform: translateY(-50%); }
+    .gcallout-tag {
+      display: block; font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.75rem;
+    }
+    .gcallout h3 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800;
+      line-height: 1.06; letter-spacing: -0.03em;
+      color: var(--text-primary); margin-bottom: 0.85rem;
+    }
+    .gcallout p { font-size: 0.86rem; line-height: 1.75; color: var(--text-secondary); }
+    .growth-prompt {
+      position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      z-index: 3; transition: opacity 0.5s ease; pointer-events: none;
+    }
+    .growth-prompt span {
+      font-size: 0.56rem; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--text-faint);
+    }
+    .growth-prompt-line {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, var(--rule-accent), transparent);
+      animation: growthPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes growthPulse {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 1; }
+    }
+    .growth-progress-track {
+      position: absolute; right: 3.5rem; top: 50%; transform: translateY(-50%);
+      width: 1px; height: 90px; background: var(--rule); z-index: 3; overflow: hidden;
+    }
+    .growth-progress-fill {
+      width: 100%; height: 0%; background: var(--emerald);
+      transition: height 0.08s linear;
+    }
+    @media (max-width: 900px) {
+      .gcallout { left: 1.75rem; max-width: 260px; }
+      .growth-intro { left: 1.75rem; }
+      .growth-progress-track { right: 1.25rem; }
+    }
+
     /* ABOUT */
     #about {
       position: relative; padding: 9rem 10rem;
@@ -454,6 +521,58 @@
     </div>
   </div>
 
+  <!-- GROWTH ANIMATION -->
+  <section id="growth">
+    <div class="growth-sticky">
+
+      <div class="growth-intro">
+        <span class="growth-intro-label">From Seed to Table</span>
+      </div>
+
+      <canvas id="growth-canvas"></canvas>
+
+      <div class="gcallout" data-from="0" data-to="20">
+        <span class="gcallout-tag">Precision from Day One</span>
+        <h3>Every variable.<br>Controlled.</h3>
+        <p>Temperature, light, and hydration engineered for optimal germination — from the very first moment of growth.</p>
+      </div>
+
+      <div class="gcallout" data-from="22" data-to="42">
+        <span class="gcallout-tag">Root Intelligence</span>
+        <h3>Roots in water.<br>Not soil.</h3>
+        <p>Nutrients delivered directly to the root system. Faster growth, less input, zero soil contamination.</p>
+      </div>
+
+      <div class="gcallout" data-from="44" data-to="62">
+        <span class="gcallout-tag">Resource Efficiency</span>
+        <h3>98% less<br>water.</h3>
+        <p>Every drop recirculated in a closed loop. What the plant doesn't absorb is returned — nothing wasted.</p>
+      </div>
+
+      <div class="gcallout" data-from="64" data-to="83">
+        <span class="gcallout-tag">Clean by Design</span>
+        <h3>Zero pesticides.<br>Ever.</h3>
+        <p>Sealed environments eliminate every variable that drives chemical dependence. What grows here stays clean.</p>
+      </div>
+
+      <div class="gcallout" data-from="83" data-to="100">
+        <span class="gcallout-tag">Harvested to Order</span>
+        <h3>Peak flavour.<br>Peak nutrition.</h3>
+        <p>Cut at the exact moment of maximum density — then delivered to your kitchen in under four hours.</p>
+      </div>
+
+      <div class="growth-prompt" id="growth-prompt">
+        <span>Scroll to watch it grow</span>
+        <div class="growth-prompt-line"></div>
+      </div>
+
+      <div class="growth-progress-track">
+        <div class="growth-progress-fill" id="growth-fill"></div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section id="about">
     <div class="section-label">01 / Mission</div>
@@ -674,6 +793,68 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // BASIL GROWTH SCROLL ANIMATION
+    (function () {
+      const canvas = document.getElementById('growth-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const section = document.getElementById('growth');
+      const prompt = document.getElementById('growth-prompt');
+      const fill = document.getElementById('growth-fill');
+      const callouts = document.querySelectorAll('.gcallout');
+      const TOTAL = 241;
+      const imgs = [];
+      let canvasSet = false;
+      let rafPending = false;
+      let lastFrame = -1;
+
+      for (let i = 1; i <= TOTAL; i++) {
+        const img = new Image();
+        img.src = `brand_assets/frames/f${String(i).padStart(4, '0')}.jpg`;
+        img.onload = function () {
+          if (!canvasSet) {
+            canvas.width = this.naturalWidth;
+            canvas.height = this.naturalHeight;
+            ctx.drawImage(this, 0, 0);
+            canvasSet = true;
+          }
+        };
+        imgs[i] = img;
+      }
+
+      function render() {
+        rafPending = false;
+        const st = window.scrollY;
+        const top = section.offsetTop;
+        const h = section.offsetHeight;
+        const vh = window.innerHeight;
+        const progress = Math.max(0, Math.min(1, (st - top) / (h - vh)));
+        const idx = Math.min(TOTAL, Math.max(1, Math.round(progress * (TOTAL - 1)) + 1));
+
+        if (idx !== lastFrame) {
+          const img = imgs[idx];
+          if (img && img.complete && img.naturalWidth > 0) {
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            lastFrame = idx;
+          }
+        }
+
+        fill.style.height = `${progress * 100}%`;
+        prompt.style.opacity = progress > 0.02 ? '0' : '1';
+
+        const pct = progress * 100;
+        callouts.forEach(c => {
+          const from = parseFloat(c.dataset.from);
+          const to = parseFloat(c.dataset.to);
+          c.classList.toggle('active', pct >= from && pct < to);
+        });
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!rafPending) { rafPending = true; requestAnimationFrame(render); }
+      }, { passive: true });
+    })();
   </script>
 </body>
 </html>
