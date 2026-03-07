@@ -825,9 +825,7 @@
           if (!canvasSet) {
             canvas.width = this.naturalWidth;
             canvas.height = this.naturalHeight;
-            ctx.filter = 'brightness(108%) contrast(104%)';
             ctx.drawImage(this, 0, 0);
-            ctx.filter = 'none';
             canvasSet = true;
             requestAnimationFrame(positionCallouts);
           }
@@ -847,9 +845,7 @@
         if (idx !== lastFrame) {
           const img = imgs[idx];
           if (img && img.complete && img.naturalWidth > 0) {
-            ctx.filter = 'brightness(108%) contrast(104%)';
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            ctx.filter = 'none';
             lastFrame = idx;
           }
         }
