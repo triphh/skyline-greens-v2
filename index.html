@@ -863,10 +863,11 @@
           return;
         }
         const intro = document.querySelector('.growth-intro');
-        const introBottom = intro ? intro.getBoundingClientRect().bottom : 80;
-        const canvasTop = canvas.getBoundingClientRect().top;
+        // Use layout-relative offsets — stable regardless of scroll position
+        const introBottom = intro ? (intro.offsetTop + intro.offsetHeight) : 80;
+        const canvasTop = window.innerHeight - canvas.offsetHeight;
+        const gap = canvasTop - introBottom;
         callouts.forEach(c => {
-          const gap = canvasTop - introBottom;
           const topOffset = introBottom + (gap / 2) - (c.offsetHeight / 2);
           c.style.bottom = 'auto';
           c.style.top = Math.max(introBottom + 8, topOffset) + 'px';
