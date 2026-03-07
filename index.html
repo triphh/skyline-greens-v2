@@ -864,9 +864,12 @@
         }
         const intro = document.querySelector('.growth-intro');
         const introBottom = intro ? intro.getBoundingClientRect().bottom : 80;
+        const canvasTop = canvas.getBoundingClientRect().top;
         callouts.forEach(c => {
+          const gap = canvasTop - introBottom;
+          const topOffset = introBottom + (gap / 2) - (c.offsetHeight / 2);
           c.style.bottom = 'auto';
-          c.style.top = (introBottom + 14) + 'px';
+          c.style.top = Math.max(introBottom + 8, topOffset) + 'px';
         });
       }
 
