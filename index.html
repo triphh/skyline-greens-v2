@@ -200,7 +200,6 @@
       position: sticky; top: 0; height: 100vh; overflow: hidden;
       display: flex; align-items: flex-end; justify-content: center;
       background: var(--bg-void);
-      filter: brightness(1.08) contrast(1.04);
     }
     #growth-canvas {
       display: block; max-width: 100%; width: auto; height: auto;
@@ -826,7 +825,9 @@
           if (!canvasSet) {
             canvas.width = this.naturalWidth;
             canvas.height = this.naturalHeight;
+            ctx.filter = 'brightness(108%) contrast(104%)';
             ctx.drawImage(this, 0, 0);
+            ctx.filter = 'none';
             canvasSet = true;
             requestAnimationFrame(positionCallouts);
           }
@@ -846,7 +847,9 @@
         if (idx !== lastFrame) {
           const img = imgs[idx];
           if (img && img.complete && img.naturalWidth > 0) {
+            ctx.filter = 'brightness(108%) contrast(104%)';
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            ctx.filter = 'none';
             lastFrame = idx;
           }
         }
