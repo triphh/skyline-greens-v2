@@ -198,12 +198,12 @@
     #growth { position: relative; height: 350vh; background: var(--bg-void); }
     .growth-sticky {
       position: sticky; top: 0; height: 100vh; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
+      display: flex; align-items: flex-end; justify-content: center;
       background: var(--bg-void);
     }
     #growth-canvas {
       display: block; max-width: 100%; width: auto; height: auto;
-      max-height: 88vh; pointer-events: none;
+      max-height: 78vh; pointer-events: none; margin-bottom: 0;
     }
     .growth-intro {
       position: absolute; top: 2.75rem; left: 10rem; z-index: 3;
@@ -213,11 +213,11 @@
       text-transform: uppercase; color: var(--text-faint);
     }
     .gcallout {
-      position: absolute; left: 10rem; top: 50%; transform: translateY(calc(-50% + 12px));
+      position: absolute; left: 8rem; top: 7rem; transform: translateY(14px);
       max-width: 360px; opacity: 0; pointer-events: none; z-index: 3;
       transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
     }
-    .gcallout.active { opacity: 1; transform: translateY(-50%); }
+    .gcallout.active { opacity: 1; transform: translateY(0); }
     .gcallout-tag {
       display: block; font-size: 0.58rem; font-weight: 700;
       letter-spacing: 0.22em; text-transform: uppercase;
@@ -256,8 +256,13 @@
       transition: height 0.08s linear;
     }
     @media (max-width: 900px) {
-      .gcallout { left: 1.75rem; max-width: 260px; }
-      .growth-intro { left: 1.75rem; }
+      .gcallout {
+        left: 50%; top: 5rem; bottom: auto; max-width: calc(100% - 3.5rem);
+        transform: translateX(-50%) translateY(14px);
+        text-align: center;
+      }
+      .gcallout.active { transform: translateX(-50%) translateY(0); }
+      .growth-intro { left: 50%; transform: translateX(-50%); text-align: center; }
       .growth-progress-track { right: 1.25rem; }
     }
 
@@ -818,6 +823,7 @@
             canvas.height = this.naturalHeight;
             ctx.drawImage(this, 0, 0);
             canvasSet = true;
+            requestAnimationFrame(positionCallouts);
           }
         };
         imgs[i] = img;
@@ -850,6 +856,21 @@
           c.classList.toggle('active', pct >= from && pct < to);
         });
       }
+
+      function positionCallouts() {
+        if (window.innerWidth > 900) {
+          callouts.forEach(c => { c.style.top = ''; c.style.bottom = ''; });
+          return;
+        }
+        const intro = document.querySelector('.growth-intro');
+        const introBottom = intro ? intro.getBoundingClientRect().bottom : 80;
+        callouts.forEach(c => {
+          c.style.bottom = 'auto';
+          c.style.top = (introBottom + 14) + 'px';
+        });
+      }
+
+      window.addEventListener('resize', positionCallouts, { passive: true });
 
       window.addEventListener('scroll', () => {
         if (!rafPending) { rafPending = true; requestAnimationFrame(render); }
