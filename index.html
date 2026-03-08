@@ -467,6 +467,25 @@
       .impact-stat:nth-child(2) { border-top: none; padding-top: 0; }
     }
 
+    /* INSIGHTS TEASER */
+    #insights-teaser { padding: 7rem 10rem; background: var(--bg-void); border-top: 1px solid var(--rule); }
+    .insights-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 4rem; }
+    .insights-header h2 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; color: var(--text-primary); line-height: 1.1; }
+    .insights-header a { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--emerald); text-decoration: none; white-space: nowrap; transition: opacity 0.2s; }
+    .insights-header a:hover { opacity: 0.65; }
+    .insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .insight-card { display: block; text-decoration: none; border: 1px solid var(--rule); padding: 2.25rem; border-radius: 2px; transition: border-color 0.2s, transform 0.2s; }
+    .insight-card:hover { border-color: var(--rule-accent); transform: translateY(-3px); }
+    .insight-card .ic-cat { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.9rem; }
+    .insight-card .ic-title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); line-height: 1.35; letter-spacing: -0.015em; margin-bottom: 0.9rem; }
+    .insight-card .ic-excerpt { font-size: 0.82rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.25rem; }
+    .insight-card .ic-meta { font-size: 0.68rem; color: var(--text-faint); font-weight: 500; }
+    @media (max-width: 900px) {
+      #insights-teaser { padding: 5rem 2rem; }
+      .insights-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; margin-bottom: 2.5rem; }
+      .insights-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+
     /* CTA */
     #cta { padding: 10rem 10rem; background: var(--emerald); position: relative; overflow: hidden; }
     .cta-bg { display: none; }
@@ -659,6 +678,7 @@
       <a href="#about">About</a>
       <a href="#produce">Produce</a>
       <a href="#technology">Technology</a>
+      <a href="/blog/">Insights</a>
       <a href="#cta" class="btn-nav">Partner With Us</a>
     </div>
   </nav>
@@ -1023,6 +1043,34 @@
     </div>
   </section>
 
+  <!-- INSIGHTS TEASER -->
+  <section id="insights-teaser">
+    <div class="insights-header">
+      <h2>From the Farm.</h2>
+      <a href="/blog/">View All Insights &nbsp;&#x2197;</a>
+    </div>
+    <div class="insights-grid">
+      <a href="/blog/what-is-vertical-farming/" class="insight-card reveal">
+        <p class="ic-cat">Education</p>
+        <p class="ic-title">What Is Vertical Farming? A Plain-Language Explanation</p>
+        <p class="ic-excerpt">Vertical farming is indoor agriculture arranged in stacked layers — eliminating weather, seasons, and geography as constraints on where food can grow.</p>
+        <p class="ic-meta">5 min read &nbsp;·&nbsp; March 2026</p>
+      </a>
+      <a href="/blog/nyc-restaurants-local-produce/" class="insight-card reveal" style="transition-delay:0.08s">
+        <p class="ic-cat">For Chefs</p>
+        <p class="ic-title">Why NYC Restaurants Are Switching to Locally Grown Produce</p>
+        <p class="ic-excerpt">The economics and logistics of long supply chains work against kitchen quality. Urban vertical farms change the equation — harvest to delivery in under four hours.</p>
+        <p class="ic-meta">5 min read &nbsp;·&nbsp; March 2026</p>
+      </a>
+      <a href="/blog/microgreens-guide-for-chefs/" class="insight-card reveal" style="transition-delay:0.16s">
+        <p class="ic-cat">For Chefs</p>
+        <p class="ic-title">The Chef's Guide to Microgreens</p>
+        <p class="ic-excerpt">Varieties, flavour profiles, nutritional density, and kitchen applications — from finishing garnish to blended emulsions. Everything a working chef needs to know.</p>
+        <p class="ic-meta">6 min read &nbsp;·&nbsp; March 2026</p>
+      </a>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section id="cta">
     <div class="cta-bg"></div>
@@ -1062,6 +1110,7 @@
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#technology">Technology</a></li>
+          <li><a href="/blog/">Insights</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#cta">Partner With Us</a></li>
         </ul>

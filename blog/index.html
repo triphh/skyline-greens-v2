@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights — Skyline Greens</title>
+
+  <!-- SEO -->
+  <meta name="description" content="In-depth articles on vertical farming, hydroponics, urban agriculture, and fresh produce sourcing — from the team at Skyline Greens, New York City.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://skyline-greens-v2.vercel.app/blog/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Skyline Greens">
+  <meta property="og:title" content="Insights — Skyline Greens">
+  <meta property="og:description" content="In-depth articles on vertical farming, hydroponics, urban agriculture, and fresh produce sourcing.">
+  <meta property="og:url" content="https://skyline-greens-v2.vercel.app/blog/">
+  <meta property="og:image" content="https://skyline-greens-v2.vercel.app/brand_assets/Hero-background.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Insights — Skyline Greens">
+  <meta name="twitter:description" content="In-depth articles on vertical farming, hydroponics, and fresh produce sourcing from Skyline Greens NYC.">
+  <meta name="twitter:image" content="https://skyline-greens-v2.vercel.app/brand_assets/Hero-background.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="../brand_assets/icon-logo.png">
+  <link rel="apple-touch-icon" href="../brand_assets/icon-logo.png">
+  <meta name="theme-color" content="#1B4332">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Skyline Greens Insights",
+    "description": "Articles on vertical farming, hydroponics, urban agriculture, and fresh produce sourcing.",
+    "url": "https://skyline-greens-v2.vercel.app/blog/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Skyline Greens",
+      "url": "https://skyline-greens-v2.vercel.app/"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-void:        #FFFFFF;
+      --bg-dark:        #F7FAF8;
+      --bg-surface:     #EFF5F1;
+      --bg-elevated:    #E4EFE7;
+      --emerald:        #1B4332;
+      --emerald-mid:    #2A6648;
+      --accent:         #4A7C59;
+      --accent-warm:    #5A9068;
+      --accent-dim:     rgba(74,124,89,0.18);
+      --text-primary:   #111C16;
+      --text-secondary: rgba(17,28,22,0.60);
+      --text-faint:     rgba(17,28,22,0.36);
+      --rule:           rgba(27,67,50,0.10);
+      --rule-accent:    rgba(74,124,89,0.22);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; background: var(--bg-void); color: var(--text-primary); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.012; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; transition: background 0.4s ease, padding 0.4s ease; border-bottom: 1px solid transparent; }
+    nav.scrolled { background: rgba(255,255,255,0.92); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); padding: 1.25rem 4rem; box-shadow: 0 1px 0 var(--rule); }
+    .nav-brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; flex-shrink: 0; }
+    .nav-icon-wrap { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .nav-icon { width: 36px; height: 36px; object-fit: cover; display: block; }
+    .nav-wordmark { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--emerald); line-height: 1; }
+    .nav-wordmark strong { font-weight: 800; letter-spacing: 0.12em; }
+    .nav-links { display: flex; align-items: center; gap: 3rem; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a.active { color: var(--emerald); }
+    .btn-nav { background: var(--emerald) !important; color: #FFFFFF !important; padding: 0.6rem 1.5rem !important; border-radius: 2px !important; font-size: 0.7rem !important; font-weight: 700 !important; letter-spacing: 0.1em !important; transition: background 0.2s ease, transform 0.15s ease !important; }
+    .btn-nav:hover { background: var(--emerald-mid) !important; transform: translateY(-1px) !important; }
+
+    /* HERO */
+    .blog-hero { background: var(--emerald); padding: 12rem 10rem 7rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .blog-hero-tag { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(196,217,160,0.8); margin-bottom: 1.5rem; }
+    .blog-hero h1 { font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; color: #FFFFFF; margin-bottom: 1.25rem; }
+    .blog-hero p { font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.60); max-width: 480px; }
+
+    /* GRID */
+    .blog-grid-section { padding: 6rem 10rem 8rem; }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+
+    /* CARD */
+    .blog-card { display: block; text-decoration: none; border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; }
+    .blog-card:hover { border-color: var(--rule-accent); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(27,67,50,0.08); }
+    .blog-card:focus-visible { outline: 2px solid var(--accent-dim); outline-offset: 2px; }
+    .card-body { padding: 2.5rem; }
+    .card-cat { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .card-title { font-size: 1.1rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 0.9rem; }
+    .card-excerpt { font-size: 0.82rem; line-height: 1.75; color: var(--text-secondary); margin-bottom: 1.5rem; }
+    .card-meta { display: flex; align-items: center; gap: 1.25rem; }
+    .card-date { font-size: 0.7rem; color: var(--text-faint); font-weight: 500; }
+    .card-read { font-size: 0.7rem; color: var(--text-faint); font-weight: 500; }
+    .card-arrow { margin-left: auto; font-size: 1rem; color: var(--accent); transition: transform 0.2s ease; }
+    .blog-card:hover .card-arrow { transform: translate(3px, -3px); }
+
+    /* ANIMATIONS */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* FOOTER */
+    footer { background: #111C16; border-top: 1px solid rgba(255,255,255,0.08); padding: 5.5rem 10rem 4rem; }
+    .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-brand-logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .footer-icon-wrap { width: 44px; height: 44px; flex-shrink: 0; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .footer-icon { width: 44px; height: 44px; object-fit: cover; display: block; }
+    .footer-wordmark { font-size: 0.9rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.90); line-height: 1; }
+    .footer-wordmark strong { font-weight: 800; letter-spacing: 0.12em; }
+    .footer-brand p { font-size: 0.8rem; line-height: 1.8; color: rgba(255,255,255,0.40); max-width: 240px; }
+    .footer-col h4 { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.30); margin-bottom: 1.5rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .footer-col ul li a { font-size: 0.84rem; color: rgba(255,255,255,0.50); text-decoration: none; transition: color 0.2s ease; }
+    .footer-col ul li a:hover { color: #C4D9A0; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2.5rem; }
+    .footer-bottom p { font-size: 0.72rem; color: rgba(255,255,255,0.28); letter-spacing: 0.04em; }
+    .footer-tagline { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 1.75rem; }
+      nav.scrolled { padding: 1rem 1.75rem; }
+      .blog-hero { padding: 9rem 2rem 5rem; }
+      .blog-grid-section { padding: 4rem 1.75rem 5rem; }
+      .blog-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      footer { padding: 3.5rem 1.75rem 2.5rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="/" class="nav-brand" aria-label="Skyline Greens home">
+      <div class="nav-icon-wrap"><img src="../brand_assets/logo-clean.png" class="nav-icon" alt="Skyline Greens logo"></div>
+      <span class="nav-wordmark"><strong>SKYLINE</strong> GREENS</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/#produce">Produce</a>
+      <a href="/#technology">Technology</a>
+      <a href="/blog/" class="active">Insights</a>
+      <a href="/#cta" class="btn-nav">Partner With Us</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="blog-hero">
+    <p class="blog-hero-tag">Skyline Greens · Insights</p>
+    <h1>From the Farm.</h1>
+    <p>In-depth guides on vertical farming, hydroponics, urban agriculture, and what it takes to serve truly fresh produce in New York City.</p>
+  </div>
+
+  <!-- ARTICLE GRID -->
+  <div class="blog-grid-section">
+    <div class="blog-grid">
+
+      <a href="/blog/what-is-vertical-farming/" class="blog-card reveal">
+        <div class="card-body">
+          <p class="card-cat">Education</p>
+          <h2 class="card-title">What Is Vertical Farming? A Complete Guide</h2>
+          <p class="card-excerpt">Vertical farming grows food in stacked indoor environments rather than open fields. Here's how it works, why it matters, and what it means for the future of food.</p>
+          <div class="card-meta">
+            <span class="card-date">March 2026</span>
+            <span class="card-read">6 min read</span>
+            <span class="card-arrow">&#x2197;</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/blog/nyc-restaurants-local-produce/" class="blog-card reveal" style="transition-delay:0.08s">
+        <div class="card-body">
+          <p class="card-cat">For Chefs</p>
+          <h2 class="card-title">Why NYC Restaurants Are Switching to Locally Grown Produce</h2>
+          <p class="card-excerpt">Long supply chains degrade quality before produce reaches your kitchen. Here's why more New York chefs are rethinking where their ingredients come from.</p>
+          <div class="card-meta">
+            <span class="card-date">March 2026</span>
+            <span class="card-read">5 min read</span>
+            <span class="card-arrow">&#x2197;</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/blog/hydroponics-vs-soil-farming/" class="blog-card reveal" style="transition-delay:0.16s">
+        <div class="card-body">
+          <p class="card-cat">Education</p>
+          <h2 class="card-title">Hydroponics vs. Soil Farming — What's the Difference?</h2>
+          <p class="card-excerpt">Both grow food. Only one uses 98% less water, yields more per square metre, and eliminates pesticides by design. A clear comparison of both approaches.</p>
+          <div class="card-meta">
+            <span class="card-date">March 2026</span>
+            <span class="card-read">6 min read</span>
+            <span class="card-arrow">&#x2197;</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/blog/zero-pesticide-produce-benefits/" class="blog-card reveal" style="transition-delay:0.08s">
+        <div class="card-body">
+          <p class="card-cat">For Chefs</p>
+          <h2 class="card-title">The Benefits of Zero-Pesticide Produce for Your Kitchen</h2>
+          <p class="card-excerpt">No washing, longer shelf life, cleaner flavour. Zero-pesticide produce isn't just better for diners — it changes how a kitchen operates.</p>
+          <div class="card-meta">
+            <span class="card-date">March 2026</span>
+            <span class="card-read">5 min read</span>
+            <span class="card-arrow">&#x2197;</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/blog/microgreens-guide-for-chefs/" class="blog-card reveal" style="transition-delay:0.16s">
+        <div class="card-body">
+          <p class="card-cat">For Chefs</p>
+          <h2 class="card-title">The Chef's Guide to Microgreens</h2>
+          <p class="card-excerpt">Forty times the nutrient density of mature leaves, and flavour intensity to match. Everything a restaurant kitchen needs to know about sourcing and using microgreens.</p>
+          <div class="card-meta">
+            <span class="card-date">March 2026</span>
+            <span class="card-read">6 min read</span>
+            <span class="card-arrow">&#x2197;</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <div class="footer-icon-wrap"><img src="../brand_assets/logo-clean.png" class="footer-icon" alt="Skyline Greens logo"></div>
+          <span class="footer-wordmark"><strong>SKYLINE</strong> GREENS</span>
+        </div>
+        <p>Urban agriculture with architectural precision. Growing what the city needs, inside the city.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Produce</h4>
+        <ul>
+          <li><a href="/#produce">Leafy Greens</a></li>
+          <li><a href="/#produce">Living Herbs</a></li>
+          <li><a href="/#produce">Microgreens</a></li>
+          <li><a href="/#produce">Specialty Edibles</a></li>
+          <li><a href="/#cta">Custom Orders</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#technology">Technology</a></li>
+          <li><a href="/blog/">Insights</a></li>
+          <li><a href="/#cta">Partner With Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@skylinegreens.com">hello@skylinegreens.com</a></li>
+          <li><a href="/#cta">Partner Enquiries</a></li>
+          <li><span style="color:rgba(255,255,255,0.28)">New York City, NY</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Skyline Greens. All rights reserved.</p>
+      <span class="footer-tagline">Urban Agriculture &middot; Architectural Precision</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

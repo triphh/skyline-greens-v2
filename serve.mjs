@@ -14,7 +14,12 @@ const MIME = {
 };
 
 http.createServer((req, res) => {
-  const filePath = path.join(__dirname, req.url === '/' ? 'index.html' : req.url);
+  const urlPath = req.url.split('?')[0];
+  let filePath = path.join(__dirname, urlPath);
+  // If path has no extension, try serving index.html from that directory
+  if (!path.extname(filePath)) {
+    filePath = path.join(filePath, 'index.html');
+  }
   const mime = MIME[path.extname(filePath)] || 'application/octet-stream';
   fs.readFile(filePath, (err, data) => {
     if (err) { res.writeHead(err.code === 'ENOENT' ? 404 : 500); res.end(); return; }
