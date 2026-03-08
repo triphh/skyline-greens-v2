@@ -78,13 +78,18 @@
     .nav-brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; flex-shrink: 0; }
     .nav-icon-wrap { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; }
     .nav-icon { width: 36px; height: 36px; object-fit: cover; display: block; }
-    .nav-wordmark { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--emerald); line-height: 1; }
+    .nav-wordmark { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.90); line-height: 1; }
     .nav-wordmark strong { font-weight: 800; letter-spacing: 0.12em; }
     .nav-links { display: flex; align-items: center; gap: 3rem; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s ease; }
-    .nav-links a:hover, .nav-links a.active { color: var(--emerald); }
-    .btn-nav { background: var(--emerald) !important; color: #FFFFFF !important; padding: 0.6rem 1.5rem !important; border-radius: 2px !important; font-size: 0.7rem !important; font-weight: 700 !important; letter-spacing: 0.1em !important; transition: background 0.2s ease, transform 0.15s ease !important; }
-    .btn-nav:hover { background: var(--emerald-mid) !important; transform: translateY(-1px) !important; }
+    .nav-links a { color: rgba(255,255,255,0.60); text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a.active { color: #FFFFFF; }
+    .btn-nav { background: rgba(255,255,255,0.12) !important; color: #FFFFFF !important; border: 1px solid rgba(255,255,255,0.28) !important; padding: 0.6rem 1.5rem !important; border-radius: 2px !important; font-size: 0.7rem !important; font-weight: 700 !important; letter-spacing: 0.1em !important; transition: background 0.2s ease !important; }
+    .btn-nav:hover { background: rgba(255,255,255,0.22) !important; }
+    nav.scrolled .nav-wordmark { color: var(--emerald); }
+    nav.scrolled .nav-links a { color: var(--text-secondary); }
+    nav.scrolled .nav-links a:hover, nav.scrolled .nav-links a.active { color: var(--emerald); }
+    nav.scrolled .btn-nav { background: var(--emerald) !important; border-color: transparent !important; }
+    nav.scrolled .btn-nav:hover { background: var(--emerald-mid) !important; }
 
     /* HERO */
     .blog-hero { background: var(--emerald); padding: 12rem 10rem 7rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
